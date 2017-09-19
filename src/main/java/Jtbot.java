@@ -23,14 +23,17 @@ public class Jtbot extends TelegramLongPollingBot {
     }
 
     @Override
-    public String getBotToken()  {
-       try{
-        return getTokenFromFile("C:\\jtbotToken");
-    }
-    catch (Exception e){
-        System.out.print(e);
-        return null;
-    }
+    public String getBotToken() {
+        try {
+
+            return getTokenFromFile("C:\\jtbotToken.txt");
+
+        } catch (Exception e) {
+            System.out.print(e);
+            System.out.print("no token");
+            return null;
+        }
+
     }
 
     String getTokenFromFile(String path) throws IOException{
