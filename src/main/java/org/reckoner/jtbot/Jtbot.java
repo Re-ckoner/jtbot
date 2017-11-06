@@ -1,3 +1,5 @@
+package org.reckoner.jtbot;
+
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
@@ -18,7 +20,8 @@ public class Jtbot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
                     .setChatId(update.getMessage().getChatId())
-                    .setText(update.getMessage().getText()+" responce!");
+                    .setText(sum(update.getMessage().getText(), "10"));
+
             try {
                 sendMessage(message); // Call method to send the message
             } catch (TelegramApiException e) {
@@ -48,5 +51,14 @@ public class Jtbot extends TelegramLongPollingBot {
     String getTokenFromFile(String path) throws IOException{
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded);
+    }
+
+    static String sum(String s1, String s2){
+        try{
+            return  Integer.toString(Integer.parseInt(s1)+Integer.parseInt(s2));
+        }
+        catch (NumberFormatException e){
+            return "0";
+        }
     }
 }

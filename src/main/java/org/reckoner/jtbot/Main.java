@@ -1,3 +1,5 @@
+package org.reckoner.jtbot;
+
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -15,6 +17,7 @@ public class Main {
         try {
             botsApi.registerBot(new Jtbot());
         } catch (TelegramApiException e) {
+            // TODO: Add logging
             e.printStackTrace();
         }
     }
